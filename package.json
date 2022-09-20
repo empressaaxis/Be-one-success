@@ -1,0 +1,48 @@
+{
+  "name": "beonesuccess",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon --exec babel-node ./server/app.js",
+    "start": "node --require @babel/polyfill dist/app.js",
+    "build": "babel server --out-dir dist",
+    "test": "nyc --reporter=html --reporter=text node --require @babel/polyfill --require @babel/register ./node_modules/mocha/bin/mocha ./server/tests/*.js --exit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "@sendgrid/mail": "^7.7.0",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^3.1.2",
+    "mocha": "^10.0.0",
+    "mongoose": "^6.6.1",
+    "nodemon": "^2.0.20",
+    "nyc": "^15.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.19.1",
+    "@babel/node": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
+    "@babel/register": "^7.18.9",
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
+    "mocha-lcov-reporter": "^1.3.0"
+  },
+  "nyc": {
+    "exclude": [
+      "server/v2/config/*.js"
+    ]
+  }
+}
