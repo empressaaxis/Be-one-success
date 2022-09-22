@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "dev": "nodemon --exec babel-node ./server/app.js",
-    "start": "node --require @babel/polyfill dist/app.js",
+    "dev": "cross-env NODE_ENV=isDev nodemon --exec babel-node ./server/app.js",
+    "start": "cross-env NODE_ENV=isProduction node --require @babel/polyfill dist/app.js",
     "build": "babel server --out-dir dist",
-    "test": "nyc --reporter=html --reporter=text node --require @babel/polyfill --require @babel/register ./node_modules/mocha/bin/mocha ./server/tests/*.js --exit"
+    "test": "cross-env NODE_ENV=isTesting nyc --reporter=html --reporter=text node --require @babel/polyfill --require @babel/register ./node_modules/mocha/bin/mocha ./server/tests/*.js --exit"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +26,7 @@
     "jwt-decode": "^3.1.2",
     "mocha": "^10.0.0",
     "mongoose": "^6.6.1",
+    "multer": "^1.4.5-lts.1",
     "nodemon": "^2.0.20",
     "nyc": "^15.1.0"
   },

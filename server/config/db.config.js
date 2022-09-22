@@ -2,9 +2,16 @@ import mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
+let DB_CONNECTION;
+
+if(process.env.NODE_ENV === 'isTesting'){
+    DB_CONNECTION=process.env.TEST_DB_CONNECTION
+}else{
+    DB_CONNECTION=process.env.DB_URI
+}
 
 const mongoDbConnect = () => {
-    mongoose.connect(process.env.DB_URI, {
+    mongoose.connect(DB_CONNECTION, {
         useUnifiedTopology: true,
         useNewUrlParser: true
     });

@@ -2,11 +2,12 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoDbConnect from './config/db.config.js';
 import authRoutes from './routes/auth.routes.js';
+import studentsRoutes from './routes/students.routes.js';
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json({ type: '*/*'}));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json({limit: '50mb'}))
 
 const port = process.env.PORT || 3002;
 
@@ -21,6 +22,8 @@ app.use((req, res, next) => {
 });
 
 app.use('/api', authRoutes);
+app.use('/api', studentsRoutes);
+
 
 app.get('/', (req, res) => {
     res.status(200).json({
